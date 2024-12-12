@@ -19,6 +19,7 @@ export const authProviderEnum = pgEnum("auth_provider", [
   "google",
   "github",
   "linkedin",
+  "oauth",
 ]);
 
 export const users = pgTable(

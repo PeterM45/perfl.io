@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@clerk/clerk-sdk-node':
+        specifier: ^5.1.0
+        version: 5.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@clerk/nextjs':
         specifier: ^6.9.0
         version: 6.9.0(next@15.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -137,6 +140,10 @@ packages:
     peerDependencies:
       react: ^18 || ^19.0.0-0
       react-dom: ^18 || ^19.0.0-0
+
+  '@clerk/clerk-sdk-node@5.1.0':
+    resolution: {integrity: sha512-Eneb09zLfDfRfr+7kd3pdrFckb+ZfMqDSwuw+/ImePAUDv0HSvRbzIiMcuyMixga6xKqgPxFpvT/h7JPEByCJg==}
+    engines: {node: '>=18.17.0'}
 
   '@clerk/nextjs@6.9.0':
     resolution: {integrity: sha512-3L90nudYGzWcPa/CV5QKErx/GdtFJ/GVbNPnIEnb83S2pGdb6ncgGguSHtcTMisdc7f+CkE2WZP0Gr6ABVsOMg==}
@@ -2493,6 +2500,16 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       tslib: 2.4.1
+
+  '@clerk/clerk-sdk-node@5.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@clerk/backend': 1.21.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@clerk/shared': 2.20.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@clerk/types': 4.39.2
+      tslib: 2.4.1
+    transitivePeerDependencies:
+      - react
+      - react-dom
 
   '@clerk/nextjs@6.9.0(next@15.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
