@@ -18,7 +18,12 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-const spaceMono = Space_Mono({ weight: "400" });
+const spaceMono = Space_Mono({
+  weight: "400",
+  style: "normal",
+  subsets: [],
+  preload: true,
+});
 
 export default function RootLayout({
   children,
