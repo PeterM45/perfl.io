@@ -1,4 +1,6 @@
+"use client";
 import { Home, Search, Settings } from "lucide-react";
+import { useClerk } from "@clerk/nextjs";
 
 import {
   Sidebar,
@@ -11,26 +13,30 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-// Menu items.
-const items = [
-  {
-    title: "Home",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Explore",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
-];
-
 export function AppSidebar() {
+  const { openUserProfile } = useClerk();
+
+  // Modified menu items with special handling for Settings
+  const items = [
+    {
+      title: "Home",
+      url: "#",
+      icon: Home,
+      onClick: () => (window.location.href = "#"),
+    },
+    {
+      title: "Explore",
+      url: "#",
+      icon: Search,
+      onClick: () => (window.location.href = "#"),
+    },
+    {
+      title: "Settings",
+      icon: Settings,
+      onClick: () => openUserProfile(),
+    },
+  ];
+
   return (
     <Sidebar>
       <SidebarContent>
@@ -41,10 +47,10 @@ export function AppSidebar() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild size="lg">
-                    <a href={item.url}>
+                    <button onClick={item.onClick}>
                       <item.icon className="min-h-[22px] min-w-[22px]" />
                       <span className="text-lg">{item.title}</span>
-                    </a>
+                    </button>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
