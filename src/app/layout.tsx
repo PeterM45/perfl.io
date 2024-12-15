@@ -6,6 +6,7 @@ import { ClerkProvider, SignedIn, SignedOut } from "@clerk/nextjs";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "~/app/_components/app-sidebar";
 import { AppTopnav } from "~/app/_components/app-topnav";
+import { ScrollArea } from "~/components/ui/scroll-area";
 
 export const metadata: Metadata = {
   title: "perfl.io",
@@ -34,18 +35,18 @@ export default function RootLayout({
                   <AppSidebar />
                   <div className="flex flex-1 flex-col">
                     <AppTopnav />
-                    <main className="flex-1 overflow-y-auto">
+                    <ScrollArea className="flex-1" type="scroll" scrollHideDelay={600}>
                       <TRPCReactProvider>{children}</TRPCReactProvider>
-                    </main>
+                    </ScrollArea>
                   </div>
                 </div>
               </SignedIn>
 
               <div className="flex-1">
                 <SignedOut>
-                  <main className="h-full w-full">
+                  <ScrollArea className="flex-1" type="scroll" scrollHideDelay={600}>
                     <TRPCReactProvider>{children}</TRPCReactProvider>
-                  </main>
+                  </ScrollArea>
                 </SignedOut>
               </div>
             </div>
