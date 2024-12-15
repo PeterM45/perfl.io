@@ -1,6 +1,7 @@
 "use client";
 import { Home, Search, Settings, UserRound } from "lucide-react";
 import { useClerk, useUser } from "@clerk/nextjs";
+import Image from "next/image";
 
 import {
   Sidebar,
@@ -17,7 +18,6 @@ export function AppSidebar() {
   const { openUserProfile } = useClerk();
   const { user } = useUser();
 
-  // Modified menu items with special handling for Settings
   const items = [
     {
       title: "Home",
@@ -57,11 +57,12 @@ export function AppSidebar() {
                     <button onClick={item.onClick}>
                       {/* Conditional rendering for Profile */}
                       {item.title === "Profile" ? (
-                        <img
+                        <Image
                           src={user?.imageUrl || "/default-profile.png"}
                           alt="Profile"
+                          width={22} 
+                          height={22} 
                           className="rounded-full min-h-[22px] min-w-[22px] object-cover"
-                          style={{ height: '22px', width: '22px' }}
                         />
                       ) : (
                         <item.icon className="min-h-[22px] min-w-[22px]" />
