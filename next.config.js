@@ -13,7 +13,7 @@ const config = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ['img.clerk.com'], // Add this line to allow images from img.clerk.com
+    domains: ['img.clerk.com'], 
   },
 };
 
