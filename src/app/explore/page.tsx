@@ -8,7 +8,6 @@ interface User {
   id: number;
   name: string;
   role: string;
-  avatar: string;
 }
 
 export default function ExplorePage() {
@@ -18,25 +17,21 @@ export default function ExplorePage() {
       id: 1,
       name: "Alex Chen",
       role: "Product Designer",
-      avatar: "/api/placeholder/32/32",
     },
     {
       id: 2,
       name: "Sarah Park",
       role: "Developer",
-      avatar: "/api/placeholder/32/32",
     },
     {
       id: 3,
       name: "Mike Ross",
       role: "3D Artist",
-      avatar: "/api/placeholder/32/32",
     },
     {
       id: 4,
       name: "Emma Liu",
       role: "UI Designer",
-      avatar: "/api/placeholder/32/32",
     },
   ];
 
@@ -63,7 +58,7 @@ export default function ExplorePage() {
             >
               <div className="flex items-center gap-3">
                 <Avatar>
-                  <AvatarImage src={user.avatar} alt={user.name} />
+                  <AvatarImage>{user.name[0]}</AvatarImage>
                   <AvatarFallback>{user.name[0]}</AvatarFallback>
                 </Avatar>
                 <div>
