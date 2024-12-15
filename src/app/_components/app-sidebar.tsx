@@ -20,15 +20,15 @@ export function AppSidebar() {
   const items = [
     {
       title: "Home",
-      url: "#",
+      url: "/",
       icon: Home,
-      onClick: () => (window.location.href = "#"),
+      onClick: () => (window.location.href = "/"),
     },
     {
       title: "Explore",
-      url: "#",
+      url: "/explore",
       icon: Search,
-      onClick: () => (window.location.href = "#"),
+      onClick: () => (window.location.href = "/explore"),
     },
     {
       title: "Settings",
