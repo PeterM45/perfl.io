@@ -11,6 +11,7 @@ import {
 } from "@clerk/nextjs";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "~/app/_components/app-sidebar";
+import { ScrollArea } from "~/components/ui/scroll-area"; 
 
 export const metadata: Metadata = {
   title: "perfl.io",
@@ -53,9 +54,9 @@ export default function RootLayout({
                   </div>
                 </header>
 
-                <main className="flex-1 overflow-y-auto">
+                <ScrollArea className="flex-1" type="always" scrollHideDelay={600}>
                   <TRPCReactProvider>{children}</TRPCReactProvider>
-                </main>
+                </ScrollArea>
               </div>
             </div>
           </SidebarProvider>
