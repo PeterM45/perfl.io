@@ -54,7 +54,7 @@ export default function RootLayout({
                   </div>
                 </header>
 
-                <ScrollArea className="flex-1">
+                <ScrollArea className="flex-1" type="scroll" scrollHideDelay={600}>
                   <TRPCReactProvider>{children}</TRPCReactProvider>
                 </ScrollArea>
               </div>
