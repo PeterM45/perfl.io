@@ -1,5 +1,5 @@
 "use client";
-import { Home, Search, Settings } from "lucide-react";
+import { Home, Search, Settings, UserRound } from "lucide-react";
 import { useClerk } from "@clerk/nextjs";
 
 import {
@@ -31,6 +31,12 @@ export function AppSidebar() {
       onClick: () => (window.location.href = "/explore"),
     },
     {
+      title: "Profile",
+      url: "/profile",
+      icon: UserRound,
+      onClick: () => (window.location.href = "/profile"),
+    },
+    {
       title: "Settings",
       icon: Settings,
       onClick: () => openUserProfile(),
@@ -41,7 +47,7 @@ export function AppSidebar() {
     <Sidebar variant="inset">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>perfl.io</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-md">perfl.io</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
@@ -49,7 +55,9 @@ export function AppSidebar() {
                   <SidebarMenuButton asChild size="lg">
                     <button onClick={item.onClick}>
                       <item.icon className="min-h-[22px] min-w-[22px]" />
-                      <span className="text-lg">{item.title}</span>
+                      <span className="text-lg tracking-wide">
+                        {item.title}
+                      </span>
                     </button>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
