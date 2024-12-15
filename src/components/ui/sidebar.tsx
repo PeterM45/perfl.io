@@ -272,7 +272,6 @@ const SidebarTrigger = React.forwardRef<
   React.ComponentProps<typeof Button>
 >(({ className, onClick, ...props }, ref) => {
   const { toggleSidebar } = useSidebar();
-
   return (
     <Button
       ref={ref}
@@ -280,7 +279,7 @@ const SidebarTrigger = React.forwardRef<
       variant="ghost"
       size="icon"
       className={cn(
-        "h-7 w-7 text-sidebar-foreground hover:bg-sidebar-foreground hover:text-sidebar-accent",
+        "relative h-7 w-7 text-sidebar-foreground after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-[width] hover:bg-transparent hover:text-sidebar-accent hover:after:w-full",
         className,
       )}
       onClick={(event) => {
