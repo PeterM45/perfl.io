@@ -55,7 +55,17 @@ export function AppSidebar() {
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild size="lg">
                     <button onClick={item.onClick}>
-                      <item.icon className="min-h-[22px] min-w-[22px]" />
+                      {/* Conditional rendering for Profile */}
+                      {item.title === "Profile" ? (
+                        <img
+                          src={user?.imageUrl || "/default-profile.png"}
+                          alt="Profile"
+                          className="rounded-full min-h-[22px] min-w-[22px] object-cover"
+                          style={{ height: '22px', width: '22px' }}
+                        />
+                      ) : (
+                        <item.icon className="min-h-[22px] min-w-[22px]" />
+                      )}
                       <span className="text-lg tracking-wide">
                         {item.title}
                       </span>
