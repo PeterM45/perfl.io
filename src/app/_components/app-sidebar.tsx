@@ -1,6 +1,6 @@
 "use client";
 import { Home, Search, Settings, UserRound } from "lucide-react";
-import { useClerk } from "@clerk/nextjs";
+import { useClerk, useUser } from "@clerk/nextjs";
 
 import {
   Sidebar,
@@ -15,6 +15,7 @@ import {
 
 export function AppSidebar() {
   const { openUserProfile } = useClerk();
+  const { user } = useUser();
 
   // Modified menu items with special handling for Settings
   const items = [
@@ -34,7 +35,7 @@ export function AppSidebar() {
       title: "Profile",
       url: "/profile",
       icon: UserRound,
-      onClick: () => (window.location.href = "/profile"),
+      onClick: () => (window.location.href = `/profile/${user?.username}`),
     },
     {
       title: "Settings",
