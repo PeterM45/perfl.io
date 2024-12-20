@@ -37,7 +37,7 @@ export function AppSidebar() {
       icon: ({ className }: { className?: string }) =>
         isLoaded ? (
           <Image
-            src={user?.imageUrl ?? "/default-profile.png"}
+            src={user?.imageUrl ?? ""}
             alt="Profile"
             width={22}
             height={22}
