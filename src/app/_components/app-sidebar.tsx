@@ -18,27 +18,37 @@ import {
 
 export function AppSidebar() {
   const { openUserProfile } = useClerk();
-  const { user } = useUser();
-  const router = useRouter(); 
+  const { user, isLoaded } = useUser();
+  const router = useRouter();
 
   const items = [
     {
       title: "Home",
-      url: "/",
       icon: Home,
       onClick: () => router.push("/"),
     },
     {
       title: "Explore",
-      url: "/explore",
       icon: Search,
-      onClick: () => router.push("/explore"), 
+      onClick: () => router.push("/explore"),
     },
     {
       title: "Profile",
-      url: `/profile/${user?.username}`,
-      icon: UserRound,
-      onClick: () => router.push(`/profile/${user?.username}`), 
+      icon: ({ className }: { className?: string }) =>
+        isLoaded ? (
+          <Image
+            src={user?.imageUrl ?? "/default-profile.png"}
+            alt="Profile"
+            width={22}
+            height={22}
+            className={`min-h-[22px] min-w-[22px] rounded-full object-cover ${className ?? ""}`}
+          />
+        ) : (
+          <UserRound
+            className={`min-h-[22px] min-w-[22px] ${className ?? ""}`}
+          />
+        ),
+      onClick: () => user?.username && router.push(`/profile/${user.username}`),
     },
     {
       title: "Settings",
@@ -58,17 +68,7 @@ export function AppSidebar() {
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild size="lg">
                     <button onClick={item.onClick}>
-                      {item.title === "Profile" ? (
-                        <Image
-                          src={user?.imageUrl || "/default-profile.png"}
-                          alt="Profile"
-                          width={22}
-                          height={22}
-                          className="rounded-full min-h-[22px] min-w-[22px] object-cover"
-                        />
-                      ) : (
-                        <item.icon className="min-h-[22px] min-w-[22px]" />
-                      )}
+                      <item.icon className="min-h-[22px] min-w-[22px]" />
                       <span className="text-lg tracking-wide">
                         {item.title}
                       </span>

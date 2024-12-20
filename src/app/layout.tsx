@@ -25,9 +25,9 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={spaceMono.className} suppressHydrationWarning>
-      <body className="min-h-screen w-full">
-        <ClerkProvider>
+    <ClerkProvider>
+      <html lang="en" className={spaceMono.className} suppressHydrationWarning>
+        <body className="min-h-screen w-full">
           <SidebarProvider>
             <div className="flex h-screen w-full overflow-hidden">
               <SignedIn>
@@ -35,7 +35,11 @@ export default function RootLayout({
                   <AppSidebar />
                   <div className="flex flex-1 flex-col">
                     <AppTopnav />
-                    <ScrollArea className="flex-1" type="scroll" scrollHideDelay={600}>
+                    <ScrollArea
+                      className="flex-1"
+                      type="scroll"
+                      scrollHideDelay={600}
+                    >
                       <TRPCReactProvider>{children}</TRPCReactProvider>
                     </ScrollArea>
                   </div>
@@ -44,15 +48,19 @@ export default function RootLayout({
 
               <div className="flex-1">
                 <SignedOut>
-                  <ScrollArea className="flex-1" type="scroll" scrollHideDelay={600}>
+                  <ScrollArea
+                    className="flex-1"
+                    type="scroll"
+                    scrollHideDelay={600}
+                  >
                     <TRPCReactProvider>{children}</TRPCReactProvider>
                   </ScrollArea>
                 </SignedOut>
               </div>
             </div>
           </SidebarProvider>
-        </ClerkProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
