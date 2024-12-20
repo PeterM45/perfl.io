@@ -20,13 +20,15 @@ export default function ProfilePage() {
       { enabled: !!user?.id },
     );
 
-  const [displayName, setDisplayName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [bio, setBio] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
     if (profile) {
-      setDisplayName(profile.displayName ?? "");
+      setFirstName(profile.firstName ?? "");
+      setLastName(profile.lastName ?? "");
       setBio(profile.bio ?? "");
       setImageUrl(profile.imageUrl ?? "");
     }
@@ -52,16 +54,17 @@ export default function ProfilePage() {
       // Update database
       await updateProfile.mutateAsync({
         userId: user.id,
-        displayName,
+        firstName,
+        lastName,
         bio,
         imageUrl,
       });
 
       // Update Clerk profile
       if (user) {
-        // Update username and metadata
         await user.update({
-          username: displayName.toLowerCase().replace(/\s+/g, "_"),
+          firstName,
+          lastName,
           unsafeMetadata: {
             bio,
           },
@@ -111,12 +114,22 @@ export default function ProfilePage() {
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <label htmlFor="displayName">Display Name</label>
+              <label htmlFor="firstName">First Name</label>
               <Input
-                id="displayName"
-                value={displayName}
-                onChange={(e) => setDisplayName(e.target.value)}
-                placeholder="Your display name"
+                id="firstName"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="Your first name"
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="lastName">Last Name</label>
+              <Input
+                id="lastName"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder="Your last name"
                 required
               />
             </div>

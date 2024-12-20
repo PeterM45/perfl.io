@@ -6,7 +6,8 @@ import { TRPCError } from "@trpc/server";
 
 const updateProfileSchema = z.object({
   userId: z.string(),
-  displayName: z.string().min(1).max(256).optional(),
+  firstName: z.string().min(1).max(64).optional(),
+  lastName: z.string().min(1).max(64).optional(),
   bio: z.string().max(500).optional(),
   imageUrl: z.string().url().optional(),
 });
@@ -52,7 +53,8 @@ export const userRouter = createTRPCRouter({
           // If user doesn't exist, create a new record
           const newUser = await ctx.db.insert(users).values({
             id: userId,
-            displayName: updateData.displayName,
+            firstName: updateData.firstName,
+            lastName: updateData.lastName,
             bio: updateData.bio,
             imageUrl: updateData.imageUrl,
             authProvider: "oauth", // default value, adjust as needed

@@ -28,7 +28,8 @@ export const users = pgTable(
     id: varchar("id", { length: 256 }).primaryKey(), // Clerk ID
     email: varchar("email", { length: 256 }).unique(), // Optional since they might use social login
     username: varchar("username", { length: 64 }).notNull().unique(),
-    displayName: varchar("display_name", { length: 256 }),
+    firstName: varchar("first_name", { length: 64 }),
+    lastName: varchar("last_name", { length: 64 }),
     bio: text("bio"),
     authProvider: authProviderEnum("auth_provider").notNull(),
     imageUrl: text("image_url"), // Profile picture from social or uploaded
@@ -43,22 +44,5 @@ export const users = pgTable(
   (table) => ({
     emailIdx: index("email_idx").on(table.email),
     usernameIdx: index("username_idx").on(table.username),
-  }),
-);
-
-export const posts = pgTable(
-  "post",
-  {
-    id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
-    name: varchar("name", { length: 256 }),
-    createdAt: timestamp("created_at", { withTimezone: true })
-      .default(sql`CURRENT_TIMESTAMP`)
-      .notNull(),
-    updatedAt: timestamp("updated_at", { withTimezone: true }).$onUpdate(
-      () => new Date(),
-    ),
-  },
-  (example) => ({
-    nameIndex: index("name_idx").on(example.name),
   }),
 );
